@@ -1,0 +1,13 @@
+---
+- name: Revisar host existe en el inventario
+  hosts: localhost
+  gather_facts: false
+  become: true
+  vars:
+    satellite_organization: "Banco Pichincha"
+  tasks:
+
+    - name: Check host in inventory
+      ansible.builtin.fail:
+        msg: "Host {{ hostname_subscribing_host }} not found in inventory."
+      when: hostname_subscribing_host not in groups['SATELLITE_CLIENTS']

@@ -1,0 +1,7 @@
+---
+- name: Promover cvs
+  hosts: SATELLITE_SERVER
+  become: true
+  gather_facts: false
+  roles:
+    - role: satellite_op_promote_collective_cv
