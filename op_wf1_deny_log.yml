@@ -1,0 +1,9 @@
+---
+- name: Publicando vistas de contenido en Satellite.
+  hosts: SATELLITE_SERVER
+  gather_facts: false
+  become: false
+  tasks:
+    - name: Notify denial
+      debug:
+        msg: "Promotion was denied by the approver."

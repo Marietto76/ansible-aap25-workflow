@@ -1,0 +1,23 @@
+- name: Enviar correo aprobación de registro host
+  community.general.mail:
+    host: "{{ ocp_smtp_host }}"
+    port: "{{ ocp_smtp_port }}"
+    username: "{{ smtp_user | default(omit) }}"
+    password: "{{ smtp_password | default(omit) }}"
+    from: "{{ ocp_mail_from }}"
+    to: "{{ solicitud_email_list }}"
+    subject: 'Satellite - Aproval Needs'
+    body: |
+      Estimado Usuario,
+      Este es un paso intermedio en el workflow de registro de host.
+      De parte de operaciones se ha ejecutado el template para registrar un host en producción
+      se requiere su aprobación antes de continuar con el flujo de registro de host
+      1. Ingresar a la consola de ansible automation platform.
+      2. Ir a Workflows
+      3. Seleccionar Workflow - registro de hosts
+      4. revisar parámetros ingresados por el usuario
+      5. de estar satisfecho con los parámetros ingresos aprobar el flujo
+      6. en caso de verificar un incorrecto ingreso de datos denegar el flujos
+      Las imágenes deben lucir así en los adjuntos:
+      - ClusterStatus.png
+      Saludos Cordiales.

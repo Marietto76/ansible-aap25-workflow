@@ -1,0 +1,11 @@
+- name: Enviar correo aprobación de registro host
+  community.general.mail:
+    host: "{{ ocp_smtp_host }}"
+    port: "{{ ocp_smtp_port }}"
+    username: "{{ smtp_user | default(omit) }}"
+    password: "{{ smtp_password | default(omit) }}"
+    from: "{{ ocp_mail_from }}"
+    to: "{{ solicitud_email_list }}"
+    subject: 'Satellite - Aproval Done'
+    body: |
+      Estimado Usuario, "Registration of {{ hostname_subscribing_host }} to Satellite completed successfully. Saludos Cordiales.
