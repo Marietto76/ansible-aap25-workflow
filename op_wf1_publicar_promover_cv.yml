@@ -3,13 +3,16 @@
   hosts: SATELLITE_SERVER
   gather_facts: false
   become: false
+  vars:
+    #satellite_organization: "Soporte Libre"
+    
   tasks:
     - name: "Publish a content view and promote that version to Library & Dev, not idempotent"
       redhat.satellite.content_view_version:
-        server_url: "{{ lookup('env', 'SATELLITE_SERVER_URL') }}"
-        username: "{{ lookup('env', 'SATELLITE_USERNAME') }}"
-        password: "{{ lookup('env', 'SATELLITE_PASSWORD') }}"
-        validate_certs: "{{ lookup('env', 'SATELLITE_VALIDATE_CERTS') }}"
+        server_url: https://satellitesrvuio1.corp.daytwo.cloud
+        password: soporte12345678
+        username: admin
+        validate_certs: "false"
         organization: "{{ satellite_organization }}"
         content_view: "{{ satellite_cv_pp_cvname }}"
         description: "{{ satellite_cv_pp_description }}"

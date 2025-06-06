@@ -3,6 +3,8 @@
   hosts: SATELLITE_SERVER
   gather_facts: false
   become: false
+  
+
   tasks:
     - name: Enviar correo aprobación de registro host
       community.general.mail:

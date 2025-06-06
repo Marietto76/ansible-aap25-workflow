@@ -1,2 +1,7 @@
 ---
 # vars file for wf-satellite
+ocp_smtp_host: "smtp.corp.daytwo.cloud"
+ocp_smtp_port: 25
+smtp_user: "smtp_mario"
+smtp_password: "smtp_12345678"
+ocp_mail_from: "infra_admin@pichincha.com"
