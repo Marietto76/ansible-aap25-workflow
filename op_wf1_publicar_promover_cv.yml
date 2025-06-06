@@ -15,4 +15,4 @@
         organization: "{{ satellite_organization }}"
         content_view: "{{ satellite_cv_pp_cvname }}"
         description: "{{ satellite_cv_pp_description }}"
-        lifecycle_environments: "{{ satellite_cv_pp_lifecycle_envs.split(',') }}"
+        lifecycle_environments: "{{ satellite_cv_pp_lifecycles.split(',') }}"
