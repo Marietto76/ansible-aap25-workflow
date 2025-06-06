@@ -3,9 +3,8 @@
   hosts: SATELLITE_SERVER
   gather_facts: false
   become: false
-  vars:
-    #satellite_organization: "Soporte Libre"
-    
+  vars_files:
+    - vars/main.yml
   tasks:
     - name: "Publish a content view and promote that version to Library & Dev, not idempotent"
       redhat.satellite.content_view_version:
