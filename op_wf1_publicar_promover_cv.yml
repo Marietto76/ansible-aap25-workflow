@@ -10,7 +10,7 @@
     - name: print workflow id job
       ansible.builtin.debug:
         msg:
-          tower_workflow_job_id: "{{ workflow_job_id | default('undefined') }}"
+          tower_workflow_job_id: "{{ tower_workflow_job_id | default('undefined') }}"
           tower_workflow_job_name: "{{ tower_workflow_job_name | default('undefined') }}"
           awx_workflow_job_id: "{{ awx_workflow_job_id | default('undefined') }}"
           job_id: "{{ tower_job_id | default('undefined') }}"
