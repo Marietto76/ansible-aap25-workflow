@@ -6,6 +6,15 @@
   vars_files:
     - vars/main.yml
   tasks:
+
+    - name: print workflow id job
+      ansible.builtin.debug:
+        msg:
+          tower_workflow_job_id: "{{ tower_workflow_job_id | default('undefined') }}"
+          tower_workflow_job_name: "{{ tower_workflow_job_name | default('undefined') }}"
+          awx_workflow_job_id: "{{ awx_workflow_job_id | default('undefined') }}"
+          job_id: "{{ tower_job_id | default('undefined') }}"
+
     - name: "Publish a content view and promote that version to Library & Dev, not idempotent"
       redhat.satellite.content_view_version:
         server_url: https://satellitesrvuio1.corp.daytwo.cloud
