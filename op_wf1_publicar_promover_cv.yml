@@ -15,6 +15,7 @@
           awx_workflow_job_id: "{{ awx_workflow_job_id | default('undefined') }}"
           job_id: "{{ tower_job_id | default('undefined') }}"
           node_name: "{{ tower_job_template_name | default('undefined') }}"
+          wf_user: "{{ tower_user_name | default('N/A') }}"
 
     - name: "Publish a content view and promote that version to Library & Dev, not idempotent"
       redhat.satellite.content_view_version:
