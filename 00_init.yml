@@ -1,0 +1,19 @@
+---
+- name: INIT - create base file
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Ensure lab directory exists
+      file:
+        path: /tmp/aap_parallel_lab
+        state: directory
+        mode: "0755"
+
+    - name: Write init file
+      copy:
+        dest: /tmp/aap_parallel_lab/state.txt
+        content: |
+          INIT OK
+          timestamp: {{ lookup('pipe','date -Is') }}
+        mode: "0644"

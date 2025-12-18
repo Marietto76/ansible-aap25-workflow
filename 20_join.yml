@@ -1,0 +1,10 @@
+---
+- name: JOIN - marker after ALL parents
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Append JOIN marker
+      lineinfile:
+        path: /tmp/aap_parallel_lab/state.txt
+        line: "JOIN (ALL) reached: {{ lookup('pipe','date -Is') }}"

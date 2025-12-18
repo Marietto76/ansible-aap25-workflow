@@ -1,0 +1,17 @@
+---
+- name: FINAL - show content
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Append FINAL marker
+      lineinfile:
+        path: /tmp/aap_parallel_lab/state.txt
+        line: "FINAL reached: {{ lookup('pipe','date -Is') }}"
+
+    - name: Display file
+      command: cat /tmp/aap_parallel_lab/state.txt
+      register: out
+
+    - debug:
+        var: out.stdout_lines

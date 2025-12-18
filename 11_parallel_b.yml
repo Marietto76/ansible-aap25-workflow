@@ -1,0 +1,19 @@
+---
+- name: PARALLEL B - append + sleep
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Append B start
+      lineinfile:
+        path: /tmp/aap_parallel_lab/state.txt
+        line: "B start: {{ lookup('pipe','date -Is') }}"
+
+    - name: Sleep 10s to simulate work
+      pause:
+        seconds: 10
+
+    - name: Append B end
+      lineinfile:
+        path: /tmp/aap_parallel_lab/state.txt
+        line: "B end:   {{ lookup('pipe','date -Is') }}"
