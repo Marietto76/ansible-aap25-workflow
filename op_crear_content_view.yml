@@ -1,0 +1,32 @@
+---
+- name: Crear Content View
+  hosts: SATELLITE_SERVER
+  gather_facts: false
+  vars:
+    satellite_organization: "Banco Pichincha"
+  tasks:
+    - name: Build CV name from product and version
+      ansible.builtin.set_fact:
+        cv_combined_name: "CV-{{ cv_product_name }}{{ cv_product_version }}"
+
+    - name: Initialize combined repos list
+      ansible.builtin.set_fact:
+        cv_combined_repos: []
+
+    - name: Append repo/product pairs
+      ansible.builtin.set_fact:
+        cv_combined_repos: "{{ cv_combined_repos + [ {'name': item.0 | trim, 'product': item.1 | trim} ] }}"
+      loop: "{{ repo_names.split(',') | zip(repo_products.split(',')) | list }}"
+
+
+    - name: Crear content view
+      redhat.satellite.content_view:
+        server_url: https://satellitesrvuio1.corp.daytwo.cloud
+        password: soporte12345678
+        username: admin
+        validate_certs: "false"
+        organization: "Soporte Libre"
+        name: "{{ cv_combined_name }}"
+        repositories: "{{ cv_combined_repos }}"
+        composite: false
+      failed_when: false
