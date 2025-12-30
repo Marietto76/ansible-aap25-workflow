@@ -29,4 +29,4 @@
         name: "{{ cv_combined_name }}"
         repositories: "{{ cv_combined_repos }}"
         composite: false
-      failed_when: false
+      register: cv_creation_result
